@@ -3,11 +3,11 @@ version: "3.8"
 services:
   db:
     image: mysql:8
-    restart: always
     container_name: todo_db
+    restart: always
     environment:
-      MYSQL_USER: root
-      MYSQL_PASSWORD: neversettle
+      MYSQL_USER: user
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: todoDB
     ports:
       - "3306:3306"
@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: mysql+pymysql://root:neversettle@db:3306/todoDB
+      DATABASE_URL: mysql+pymysql://user:password@db:3306/todoDB
     ports:
       - "8000:8000"
     volumes:
